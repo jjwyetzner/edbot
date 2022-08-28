@@ -68,6 +68,60 @@
             "responses": [
                 "Based on your input, I believe you are searching for help in English and Language Arts. You have now been redirected to the English and Language Arts chatbot response page. Please type in any question or topic you need help with."
             ]
+<<<<<<< HEAD
         }
     ]
 }
+=======
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "bye",
+                "farewell",
+                "see ya",
+                "peace",
+                "later",
+                "goodbye",
+                "adios",
+                "end",
+                "quit",
+                "leave",
+                "done"
+            ],
+            "responses": [
+                "Thank you for using the Edbot education resource center. Please come again!" 
+            ]
+        },
+        {
+            "tag": "thank",
+            "patterns": [
+               "thanks",
+               "thank",
+               "gratitude"
+            ],
+            "responses": [
+                "You're welcome, do you need any more assistance?",
+                "My Pleasure, do you need any more help?"
+            ]       
+           },
+           {
+            "tag": "instructions",
+            "patterns":[
+                "use",
+                "use this",
+                "instructions",
+                "directions",
+                "requirements",
+                "guide"
+            ],
+            "responses":[
+                "To use me, simply ask me for help in any of my supported subjects. Currently, I am trained in providing assistance in mathenmatics, english, and history."
+            ]
+        }
+
+            ]
+        }
+
+        
+>>>>>>> a3a7380fa27dca0320746b95d080662694474d2d
