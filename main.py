@@ -23,7 +23,7 @@ sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
 model = load_model('model/model.h5')
 words = pickle.load(open('model/words.pkl', 'rb'))
 classes = pickle.load(open('model/classes.pkl', 'rb'))
-intents = json.loads(open('app/model/general/training.json', encoding='utf-8').read())
+intents = json.loads(open('model/training.json', encoding='utf-8').read())
 needinfo = ["I'm having trouble understanding. Could you tell me more? For more help, please see the resource pages linked above.", "Could you elaborate more on that?"]
 
 def cleanUpSentence(sentence):
