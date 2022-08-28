@@ -68,11 +68,6 @@
             "responses": [
                 "Based on your input, I believe you are searching for help in English and Language Arts. You have now been redirected to the English and Language Arts chatbot response page. Please type in any question or topic you need help with."
             ]
-<<<<<<< HEAD
-        }
-    ]
-}
-=======
         },
         {
             "tag": "goodbye",
@@ -120,8 +115,5 @@
             ]
         }
 
-            ]
-        }
-
-        
->>>>>>> a3a7380fa27dca0320746b95d080662694474d2d
+    ]
+}
