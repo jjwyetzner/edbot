@@ -6,17 +6,17 @@ lem = WordNetLemmatizer()
 import random
 import pickle
 import json
+import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import gradient_descent_v2
-import numpy as np
 
 words = []
 classes = []
 documents = []
 ignoredWords = ['?', '!']
-training = open('model/training.json', encoding='utf-8').read()
-intents = json.loads(training)
+data = open('model/training.json', encoding='utf-8').read()
+intents = json.loads(data)
 
 #tokenization
 for individualIntent in intents['training']:
@@ -39,7 +39,7 @@ training = []
 emptyOutput = [0] * len(classes)
 
 for individualDocument in documents:
-    bagOfWords = [0]
+    bagOfWords = []
     patternWords = individualDocument[0]
     patternWords = [lem.lemmatize(individualWord.lower()) for individualWord in patternWords]
 

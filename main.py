@@ -24,6 +24,7 @@ model = load_model('model/model.h5')
 words = pickle.load(open('model/words.pkl', 'rb'))
 classes = pickle.load(open('model/classes.pkl', 'rb'))
 intents = json.loads(open('model/training.json', encoding='utf-8').read())
+
 needinfo = ["I'm having trouble understanding. Could you tell me more? For more help, please see the resource pages linked above.", "Could you elaborate more on that?"]
 
 def cleanUpSentence(sentence):
@@ -73,6 +74,10 @@ def getResponse(request):
                 return random.choice(i['responses'])
 
     return random.choice(needinfo)
+
+# for testing
+# while True:
+#     print(getResponse(input("type here")))
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
