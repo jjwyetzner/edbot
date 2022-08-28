@@ -3,428 +3,348 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <title>edbot</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5038/5038222.png">
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=K2D&display=swap');
+    <meta charset="UTF-8">
+    <title>EducAIte</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css.scss">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/8142/8142706.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=K2D&display=swap');
 
-    :root {
+        :root {
 
-        background: linear-gradient(270deg, #5EA333 3.63%, #2A6572 52.74%, #4A9737 100%);
+            background: linear-gradient(270deg, #5EA333 3.63%, #2A6572 52.74%, #4A9737 100%);
+            --left-msg-bg: #ececec;
+            --right-msg-bg: #579ffb;
 
+        }
 
-    }
+        html {
+            box-sizing: border-box;
+        }
 
-    html {
-      box-sizing: border-box;
-    }
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
 
-    *,
-    *:before,
-    *:after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-    }
+        body {
 
-    body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: K2D;
+        }
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: K2D;
-      overflow: auto;
-    }
-    body::-webkit-scrollbar {
-      width: 20px;
-    }
+        .msger {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 867px;
+            margin: 25px 10px;
+            height: calc(100% - 50px);
+            border: var(--border);
+            border-radius: 25px;
+            background: var(--msger-bg);
+            box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+        }
 
-    body::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
+        .msger-header {
+            /* display: flex; */
+            font-size: medium;
+            justify-content: space-between;
+            padding: 0px;
+            text-align: center;
+            border-bottom: var(--border);
+            background: linear-gradient(270deg, rgb(228, 231, 230) -6.47%, #6DE4C8 -6.46%, rgba(96, 199, 211, 0.996) 43.65%, rgba(166, 145, 248, 0.99) 93.76%);
+            color: #666;
+            font-family: K2D;
 
-    body::-webkit-scrollbar-thumb {
-      background-color: #000000;
-      border-radius: 20px;
-      border: 6px solid transparent;
-      background-clip: content-box;
-    }
+        }
 
-    body::-webkit-scrollbar-thumb:hover {
-      background-color: #464646;
-    }
-    #page-container {
-      position: relative;
-      min-height: 0vh;
-    }
+        .msger-chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 0px 0px 0px 0px;
 
+        }
 
+        .msger-chat::-webkit-scrollbar {
+            width: 6px;
 
-    #footer {
-      position: absolute;
-      color: white;
-      text-align: center;
-      bottom: 0;
-      width: 100%;
-      height: 0rem;
-      font-size: 15px;
-      /* Footer height */
-    }
-    .msger {
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 867px;
-      margin: 25px 10px;
-      height: calc(100% - 50px);
-      border: var(--border);
-      border-radius: 25px;
-      background: var(--msger-bg);
-    }
+        }
 
-    .msger-header {
-      /* display: flex; */
-      font-size: medium;
-      justify-content: space-between;
-      padding: 0px;
-      text-align: center;
-      border-bottom: var(--border);
-      background:#64aae7;
-      color: #666;
-      font-family: K2D;
+        .msger-chat::-webkit-scrollbar-track {
+            background: #ddd;
+        }
 
-    }
+        .msger-chat::-webkit-scrollbar-thumb {
+            background: #bdbdbd;
+        }
 
-    .msger-chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      border-radius: 0px 0px 0px 0px;
+        .msg {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
 
-    }
+        .msg-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            background: #ddd;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 100%;
+        }
 
-    .msger-chat::-webkit-scrollbar {
-      width: 6px;
+        .msg-bubble {
+            max-width: 450px;
+            padding: 15px;
+            border-radius: 15px;
+            background: var(--left-msg-bg);
+        }
 
-    }
+        .msg-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-    .msger-chat::-webkit-scrollbar-track {
-      background: #ddd;
-    }
+        .msg-info-name {
+            margin-right: 10px;
+            font-weight: bold;
+        }
 
-    .msger-chat::-webkit-scrollbar-thumb {
-      background: #bdbdbd;
-    }
+        .msg-info-time {
+            font-size: 0.85em;
+        }
 
-    .msg {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 10px;
-    }
+        .left-msg .msg-bubble {
+            border-bottom-left-radius: 0;
+        }
 
-    .msg-img {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-      background: #ddd;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      border-radius: 100%;
-    }
+        .left-msg .bolded-text {
+            font-weight: bold;
 
-    .msg-bubble {
-      max-width: 450px;
-      padding: 15px;
-      border-radius: 15px;
-      background: var(--left-msg-bg);
-    }
+        }
 
-    .msg-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+        .right-msg {
+            flex-direction: row-reverse;
+        }
 
-    .msg-info-name {
-      margin-right: 10px;
-      font-weight: bold;
-    }
+        .right-msg .msg-bubble {
+            background: var(--right-msg-bg);
+            color: #fff;
+            border-bottom-right-radius: 0;
+        }
 
-    .msg-info-time {
-      font-size: 0.85em;
-    }
+        .right-msg .msg-img {
+            margin: 0 0 0 10px;
+        }
 
-    .left-msg .msg-bubble {
-      border-bottom-left-radius: 0;
-    }
+        .msger-inputarea {
+            display: flex;
+            padding: 10px;
+            border-top: var(--border);
+            border-radius: 0px 0px 15px 15px;
+            background: #eee;
+        }
 
-    .right-msg {
-      flex-direction: row-reverse;
-    }
+        .msger-inputarea * {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+        }
 
-    .right-msg .msg-bubble {
-      background: var(--right-msg-bg);
-      color: #fff;
-      border-bottom-right-radius: 0;
-    }
+        .msger-input {
+            flex: 1;
+            background: #ddd;
+            outline: hidden;
+        }
 
-    .right-msg .msg-img {
-      margin: 0 0 0 10px;
-    }
+        .msger-send-btn {
+            margin-left: 10px;
+            background: rgb(64, 160, 27);
 
-    .msger-inputarea {
-      display: flex;
-      padding: 10px;
-      border-top: var(--border);
-      border-radius: 0px 0px 15px 15px;
-      background: #eee;
-    }
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.23s;
+            outline: hidden;
+        }
 
-    .msger-inputarea * {
-      padding: 10px;
-      border: none;
-      border-radius: 20px;
-      font-size: 1em;
-    }
+        .msger-send-btn:hover {
+            background: rgb(6, 90, 65);
+        }
 
-    .msger-input {
-      flex: 1;
-      background: #ddd;
-    }
+        .msger-chat {
+            background-color: #fcfcfe;
+        }
 
-    .msger-send-btn {
-      margin-left: 10px;
-      background: rgb(14, 117, 165);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.23s;
-    }
+        .heading {
+            position: relative;
+            color: #fff;
+            font-family: K2D;
+            font-style: style;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 1px;
+            padding-right: 1px;
+            font-weight: 700;
+            font-size: 70px;
+            line-height: 47px;
+            text-align: center;
+            border-radius: 25px 25px 0 0;
+            background-color: #aaaaaa;
 
-    .msger-send-btn:hover {
-      background: rgb(25, 221, 188);
-    }
+        }
 
-    .msger-chat {
-      background-color: #fcfcfe;
-    }
+        ul.nav {
+            padding-left: 0px;
+            background: rgb(65, 65, 65);
+            text-align: center;
+        }
 
-    .heading {
-      position: relative;
-color: rgb(252, 252, 252);
+        ul.nav>li {
+            display: inline-block;
+            padding: 10px 20px;
+        }
 
-      font-family: K2D;
-      font-style: style;
-      padding-top: 30px;
-      padding-bottom: 30px;
-      padding-left: 1px;
-      padding-right: 1px;
-      font-weight: 700;
-      font-size: 50px;
-      line-height: 47px;
-      text-align: center;
-      background-color: #aaaaaa;
-      border-radius: 20px 20px 0px 0px;
-    }
+        ul.nav>li:hover {
+            background-color: #2c2c2c;
+        }
+
+        ul.nav>li>a {
+            color: white;
+            text-decoration: none;
+        }
 
 
-    .dropdown {
-      position: absolute;
-      right: 2vw;
-      top: 50px;
+        .desc {
+            padding: 10px;
+            text-align: center;
+        }
 
-    }
+        footer {
+            text-align: center;
+            position: absolute;
+            bottom: 0px;
+            padding: 0.1vh;
 
-    .dropdown-content {
-      text-align: center;
-      right: -1.5vw;
-      width: 15vw;
-      display: none;
-      position: absolute;
-      background-color: #59bcc4;
-      min-width: 100px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      text-align: center;
+            color: white;
+        }
 
-    }
+        .customIndent1 {
+            padding-left: 2em;
+        }
 
-    .dropdown-content a {
-      text-align: center;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      padding: 10px 50px;
-      display: flex;
-    }
-
-    .dropdown:hover .dropdown-content {
-      text-align: center;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      text-align: center;
-      position: relative;
-      background-color: rgb(25, 221, 188);
-    }
-
-    .desc {
-      padding: 10px;
-      text-align: center;
-    }
-
-
-
-    *,
-    *:before,
-    *:after {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    .popup {
-      background-color: #2a9de9;
-      width: 520px;
-      padding: 30px 40px;
-      position: absolute;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-      border-radius: 8px;
-      display: none;
-      font-family: K2D;
-      text-align: center;
-    }
-
-    .popup button {
-      display: block;
-      margin-left: 8%;
-      background-color: transparent;
-      font-size: 20px;
-      color: #ffffff;
-      background: #03549a;
-      text-align: center;
-      border-radius: 20%;
-      width: 350px;
-      height: 40px;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-weight: bold;
-
-    }
-
-    .popup h2 {
-      margin-top: -20px;
-    }
-h5{
-  
-  padding-left:30px;
-  padding-right:30px;
-  padding-top:30px;
-  padding-bottom:90px;
-  font-size: 16px;
-  line-height: 1.5;
-  background-color: #ddd;
-  border-radius: 0 0 2.5% 2.5%;
-  color:rgb(100, 99, 99);
-  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
-
-}
-
-    .popup p {
-      font-size: 14px;
-      text-align: justify;
-      margin: 20px 0;
-      line-height: 25px;
-    }
-    ul.nav {
-  padding-left: 0px;
-  background: rgb(65, 65, 65);
-  text-align: center;
-}
-ul.nav > li {
-  display: inline-block;
-  padding: 10px 20px;
-}
-ul.nav > li:hover {
-  background-color: #2c2c2c;
-}
-ul.nav > li > a {
-  color: white;
-  text-decoration: none;
-}
-.customIndent1 {
-    padding-left: 2em;
-}
-a:link {
-    color: rgb(207, 71, 93);
-  background-color: transparent;
-  text-decoration: underline;
-}
-a:visited {
-  color: rgb(207, 71, 93);
-  background-color: transparent;
-  text-decoration: underline;
-}
-a:hover {
-  color: rgb(240, 0, 0);
-  background-color: transparent;
-  text-decoration: underline;
-}
-  </style>
+        .customIndent2 {
+            padding-left: 2em;
+        }
+    </style>
 </head>
 
 <body>
-  
- 
+    <section class="msger">
+        <div class="msger-header-title">
+            <div id="heading" class="heading">
+                edbot
 
-  <section class="msger">
-    <div class="msger-header-title">
-      <div id="heading" class="heading">
-        Wellness Tips
-
-      </div id="heading" class="heading">
-      <ul class="nav">
-      <li><a href="home">Home</a></li>
-      <li><a href="howto">How to Use</a></li>
-      <li> <a href="quicklinks">Quicklinks</a></li>
-      <li><a href="resources">NJ Resources</a></li>
-      <li><a href="https://www.thehamiltonlab.org/_files/ugd/24146b_8ac4c6dbf68c4d798638ba1cd5acc340.pdf" target="blank">Local Crisis Resources</a></li>
-
-    </ul>
-      <h5>
-        Wellness Quicklinks:
-        <ul class="customIndent1"> 
-          <li><a href ="https://www.thehamiltonlab.org/_files/ugd/e30453_9ac5fa4cbcd14cc4b50923b07ec29387.pdf" target="_blank">Tips for Teen Social Media Use</a>: Lists tips for parents and teens on how to limit the detrimental effects of social media</li>
-          <li><a href ="https://www.thehamiltonlab.org/_files/ugd/24146b_b80674bcf713475da7f1aacdc9a241ae.pdf" target="_blank">Warning Signs for Suicidal Ideation</a>: Graphic from the National Institute of Mental Health that lists some things to look out for that could signal that someone is thinking about suicide</li>
-          <li><a href ="https://www.thehamiltonlab.org/_files/ugd/24146b_cd53280629ad4a7a9ade0f1a4e2668da.pdfhttps://www.mindful.org/what-is-mindfulness/" target="_blank">Teen Depression: More than just Moodiness</a>: Graphic from the National Institute of Mental Health that lists some symptoms of depression and how to get help for depression</li>
-          <li><a href ="https://www.thehamiltonlab.org/_files/ugd/24146b_6bc06b6ec2c348d48f88f1632120da25.pdf" target="_blank">Things to Say and Not to Say to a Friend with Depression</a>: Lists 13 things not to say to people with depression and 13 things to say to people with depression. This graphic helps to learn about the correct way to help individuals with depression.</li>
-          <li><a href ="https://www.thehamiltonlab.org/_files/ugd/24146b_f52b1ce93f1d4a7195e8445b015766e0.pdf" target="_blank">Techniques to Promote Relaxation</a>: Provides guided instructions on how to perform different breathing techniques and relaxation techniques</li>
-        </ul>
-      </h5>
-      <div id="page-container">
-        <div id="content-wrap">
-          <!-- all other page content -->
+            </div id="heading" class="heading">
         </div>
-        <footer id="footer">&#169; 2022 Myndful-AI LLC</footer>
-      </div>
-    </div>
-  </section>
 
-  <!-- partial -->
-  
 
+        <ul class="nav">
+            <li><a href="home">Home</a></li>
+            <li><a href="resources">Resources</a></li>
+            <li><a href="tips">Tips</a></li>
+            <li><a href="mental">Mental Health</a></li>
+            <li><a href="tutor">Tutor</a></li>
+
+        </ul>
+        <main class="msger-chat">
+        </main>
+        <form class="msger-inputarea">
+            <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+    </section>
+
+    <!-- partial -->
+    <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+    <script>
+        //*
+        //const botLoadingDelay = 1000
+        // const botReplyDelay = 2000
+        const msgerForm = get(".msger-inputarea");
+        const msgerInput = get(".msger-input");
+        const msgerChat = get(".msger-chat");
+        const BOT_IMG = "https://media.istockphoto.com/vectors/chat-bot-ai-and-customer-service-support-concept-vector-flat-person-vector-id1221348467?k=20&m=1221348467&s=612x612&w=0&h=hp8h8MuGL7Ay-mxkmIKUsk3RY4O69MuiWjznS_7cCBw=";
+        const PERSON_IMG = "https://static.wixstatic.com/media/20ba48_d70445c3e67a485486d94af485f8a306~mv2.jpeg/v1/fill/w_509,h_612,al_c,q_80,enc_auto/istockphoto-1209654046-612x612.jpeg";
+        const BOT_NAME = "    Jazz";
+        const PERSON_NAME = "You";
+
+        msgerForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const msgText = msgerInput.value;
+            if (!msgText) return;
+            appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+            msgerInput.value = "";
+            botResponse(msgText);
+        });
+        function appendMessage(name, img, side, text) {
+            //   Simple solution for small apps
+            const msgHTML = `
+          <div class="msg ${side}-msg">
+            <div class="msg-img" style="background-image: url(${img})"></div>
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">${name}</div>
+                <div class="msg-info-time">${formatDate(new Date())}</div>
+              </div>
+              <div class="msg-text">${text}</div>
+            </div>
+          </div>
+          `;
+            msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+            msgerChat.scrollTop += 500;
+        }
+        appendMessage(BOT_NAME, BOT_IMG, "left", "Hi, I am Jazz, your education assistant. What resources do you need?");
+        function botResponse(rawText) {
+            // Bot Response
+            $.get("/metuchen/get", { msg: rawText }).done(function (data) {
+                console.log(rawText);
+                console.log(data);
+                const msgText = data;
+                appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+            });
+        }
+        // Utils
+        function get(selector, root = document) {
+            return root.querySelector(selector);
+        }
+        function formatDate(date) {
+            const h = "0" + (date.getHours() % 12);
+            const m = "0" + date.getMinutes();
+            return `${h.slice(-2)}:${m.slice(-2)}`;
+        }
+    </script>
+    <footer>
+        <p>&#169; 2022 Ashvin Trehan, JJ Wyetzner, Siddharth Paul</p>
+    </footer>
 </body>
 
 </html>

@@ -113,6 +113,15 @@ def resources(request: Request):
 def tips(request: Request):
     return templates.TemplateResponse("tips.html", {"request": request})
 
+@app.get("/mental", response_class=HTMLResponse)
+def tips(request: Request):
+    return templates.TemplateResponse("mental.html", {"request": request})
+
+@app.get("/tutor", response_class=HTMLResponse)
+def tips(request: Request):
+    return templates.TemplateResponse("tutor.html", {"request": request})
+
+
 @app.get("/get")
 def getBotResponse(msg: str):
     return str(getResponse(msg))
