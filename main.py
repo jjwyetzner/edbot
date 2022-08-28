@@ -76,3 +76,23 @@ def getResponse(request):
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+@app.get("/", response_class=HTMLResponse)
+def main(request: Request):
+    return templates.TemplateResponse("main.html", {"request": request})
+
+@app.get("/home", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("main.html", {"request": request})
+
+@app.get("/resources", response_class=HTMLResponse)
+def resources(request: Request):
+    return templates.TemplateResponse("resources.html", {"request": request})
+
+@app.get("/tips", response_class=HTMLResponse)
+def tips(request: Request):
+    return templates.TemplateResponse("tips.html", {"request": request})
+
+@app.get("/get")
+def getBotResponse(msg: str):
+    return str(getResponse(msg))
