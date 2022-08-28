@@ -15,6 +15,7 @@ import json
 import numpy as np
 from keras.models import load_model
 import pkg_resources
+import openai
 from symspellpy import SymSpell, Verbosity
 sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
 dictionary_path = pkg_resources.resource_filename("symspellpy", "frequency_dictionary_en_82_765.txt")
@@ -65,15 +66,29 @@ def getResponse(request):
     for individualResult in results:
         ints.append({"intent": classes[individualResult[0]], "probability": str(individualResult[1])})
     if(ints == []):
-        return random.choice(needinfo)
+        # return openAI(request, "")
+        return openAI(request, "")
     else: 
         tag = ints[0]['intent']
         listOfIntents = intents['training']
         for i in listOfIntents:
             if(i['tag'] == tag):
-                return random.choice(i['responses'])
+                # return random.choice(i['responses'])
+                return openAI(request, "")
 
-    return random.choice(needinfo)
+    return openAI(request, "")
+    # return random.choice(needinfo)
+
+def openAI(request, subject):
+    dialogue = "The following is a conversation between a " + subject + "tutor named Jazz and a student named User \nUser: " + request + " \nJazz: "
+    openai.api_key = "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"
+    response = openai.Completion.create(
+        engine = "text-davinci-002",
+        prompt = dialogue,
+            temperature = 0.7,
+            max_tokens = 2048
+    )
+    return response.choices[0].text
 
 # for testing
 # while True:
