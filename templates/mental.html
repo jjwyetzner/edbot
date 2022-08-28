@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>edbot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5038/5038222.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=K2D&display=swap');
+
+    :root {
+
+        background: linear-gradient(270deg, #5EA333 3.63%, #2A6572 52.74%, #4A9737 100%);
+
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    body {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: K2D;
+      overflow: auto;
+    }
+    body::-webkit-scrollbar {
+      width: 19px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background-color: #000000;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background-color: #464646;
+    }
+
+    .msger {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 867px;
+      margin: 25px 10px;
+      height: calc(100% - 50px);
+      border: var(--border);
+      border-radius: 25px;
+      background: var(--msger-bg);
+    }
+
+    .msger-header {
+      /* display: flex; */
+      font-size: medium;
+      justify-content: space-between;
+      padding: 0px;
+      text-align: center;
+      border-bottom: var(--border);
+      background: #64aae7;
+      color: #666;
+      font-family: K2D;
+
+    }
+
+    .msger-chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 0px 0px 0px 0px;
+
+    }
+
+    .msger-chat::-webkit-scrollbar {
+      width: 6px;
+
+    }
+
+    .msger-chat::-webkit-scrollbar-track {
+      background: #ddd;
+    }
+
+    .msger-chat::-webkit-scrollbar-thumb {
+      background: #bdbdbd;
+    }
+
+
+    .heading {
+      position: relative;
+      color: whitesmoke;
+      border-radius: 20px 20px 0px 0px;
+
+      font-family: K2D;
+      font-style: style;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      padding-left: 1px;
+      padding-right: 1px;
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 47px;
+      text-align: center;
+      background-color: #aaaaaa;
+      border-radius: 20px 20px 0px 0px;
+    }
+
+
+    .dropdown {
+      position: absolute;
+      right: 2vw;
+      top: 50px;
+
+    }
+
+    .dropdown-content {
+      text-align: center;
+      right: -1.5vw;
+      width: 15vw;
+      display: none;
+      position: absolute;
+      background-color: #59bcc4;
+      min-width: 100px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      text-align: center;
+    }
+
+    .dropdown-content a {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      padding: 10px 50px;
+      display: flex;
+    }
+
+    .dropdown:hover .dropdown-content {
+      text-align: center;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      text-align: center;
+      position: relative;
+      background-color: rgb(25, 221, 188);
+    }
+
+    .desc {
+      padding: 10px;
+      text-align: center;
+    }
+
+    #page-container {
+      position: relative;
+      min-height: 1vh;
+    }
+
+    #footer {
+      position: absolute;
+      color: white;
+      text-align: center;
+      bottom: 0;
+      width: 100%; 
+      height: 0.1rem;
+      /* Footer height */
+    }
+
+    *,
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .popup {
+      background-color: #2a9de9;
+      width: 520px;
+      padding: 30px 40px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      border-radius: 8px;
+      display: none;
+      font-family: K2D;
+      text-align: center;
+    }
+
+    .popup button {
+      display: block;
+      margin-left: 8%;
+      background-color: transparent;
+      font-size: 20px;
+      color: #ffffff;
+      background: #03549a;
+      text-align: center;
+      border-radius: 20%;
+      width: 350px;
+      height: 40px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: bold;
+
+    }
+
+    .popup h2 {
+      margin-top: -20px;
+    }
+
+    h5 {
+
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 14px;
+      line-height: 1.2;
+      background-color: #ddd;
+      border-radius: 0 0 2.5% 2.5%;
+      color: rgb(100, 99, 99);
+      box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .popup p {
+      font-size: 14px;
+      text-align: justify;
+      margin: 20px 0;
+      line-height: 25px;
+    }
+
+    ul.nav {
+      padding-left: 0px;
+      background: rgb(65, 65, 65);
+      text-align: center;
+    }
+
+    ul.nav>li {
+      display: inline-block;
+      padding: 10px 19px;
+    }
+
+    ul.nav>li:hover {
+      background-color: #2c2c2c;
+    }
+
+    ul.nav>li>a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:link {
+    color: rgb(207, 71, 93);
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:visited {
+  color: rgb(207, 71, 93);
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:hover {
+  color: rgb(245, 125, 125);
+  background-color: transparent;
+  text-decoration: underline;
+}
+  </style>
+</head>
+
+<body>
+
+
+
+  <section class="msger">
+    <div class="msger-header-title">
+      <div id="heading" class="heading">
+        Mental Health Resources
+
+      </div id="heading" class="heading">
+      <ul class="nav">
+
+        <li><a href="home">Home</a></li>
+        <li> <a href="howto">How to Use</a></li>
+        <li><a href="resources">NJ Resources</a></li>
+        <li><a href="wellness">Wellness Tips</a></li>
+        <li><a href="https://www.thehamiltonlab.org/_files/ugd/24146b_8ac4c6dbf68c4d798638ba1cd5acc340.pdf"
+            target="blank">Local Crisis Resources</a></li>
+
+      </ul>
+      <h5>
+        <ol>
+          <br>
+
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522176/Making_the_Most_of_High_School_Introduction.pdf"
+              target="_blank">Making the Most of High School Introduction</a>: Document written by Mrs. Hanbridge with
+            an
+            audience of parents of new high school students. Discusses how to adjust care for your child’s well-being
+            in high school.</li>
+
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522177/Family_Resource_Guide.pdf"
+              target="_blank">Family Resource Guide (pdf)</a>: Resource infographic with agencies and phone numbers to
+            contact. Resources for addiction, gambling, drunk driving, tobacco cessation, domestic violence, crisis
+            intervention, and other services.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522178/Mental_Health_Services_Directory_July_2018_final.pdf"
+              target="_blank">Middlesex County Office of Human Services Mental Health Services Directory</a>: Middlesex
+            County mental health services directory.Contains local emergency crisis centers, emergency rooms, local
+            hotlines, and both inpatient and outpatient services.
+          </li>
+          <br>
+          <li> <a href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522179/What_is_Anxiety.pdf"
+              target="_blank">What is Anxiety?</a>: A document that provides information about what anxiety is and the
+            different forms of it. Also lists different ways that one could manage anxiety. </li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522180/Useful_Apps_for_Anxiety.pdf"
+              target="_blank">Useful Apps for Anxiety</a>: Lists 7 different apps that can be used to help deal with
+            anxiety. These apps range from meditation apps to timers to help you to focus.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522181/Resources_for_Managing_Children_s_Media_Exposure.pdf"
+              target="_blank">Resources for Managing Children's Media Exposure</a>: Provides links to different websites
+            for parents to use that provide resources on managing children's media exposure.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522182/Meditation_Instructions.pdf"
+              target="_blank">Meditation Instructions</a>: A written guide that covers the basics of meditation and how
+            to
+            incorporate meditation into your daily life.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522183/Managing_Test_Anxiety.pdf"
+              target="_blank">Managing Test Anxiety</a>: Provides information on what test anxiety is and how you can
+            help
+            alleviate test anxiety before, during, and after tests.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522184/Helpful_Websites_for_Mental_Health.pdf"
+              target="_blank">Helpful Websites for Mental Health</a>: Contains a list of general national mental health
+            services <br>as well as some resources to help practice mindfulness.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522185/Breathing_Practices_for_Children.pdf"
+              target="_blank">Breathing Practices for Children</a>: Includes recommendations to help sleep better as
+            well
+            as different breathing strategies<br> that can be used for relaxation and as a coping skill.</li>
+          <br>
+          <li> <a
+              href="https://core-docs.s3.amazonaws.com/documents/asset/uploaded_file/522186/Anxiety_Resources_and_Websites.pdf"
+              target="_blank">Anxiety Resources and Websites</a>: Contains a list of links that can provide aid on
+            anything from bullying to anxiety</li>
+
+          <br>
+          <br>
+        </ol>
+
+      </h5>
+      <div id="page-container">
+        <div id="content-wrap">
+          <!-- all other page content -->
+        </div>
+        <p>&#169; 2022 Ashvin Trehan, JJ Wyetzner, Siddharth Paul</p>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+
+</html>
