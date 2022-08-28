@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>edbot</title>
+    <title>EducAIte</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -254,40 +254,6 @@
         .customIndent2 {
             padding-left: 2em;
         }
-        ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  border: 1px solid #555;
-}
-
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-li {
-  text-align: center;
-  border-bottom: 1px solid rgb(129, 129, 129);
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-li a.active {
-  background-color: #10f5a1;
-  color: white;
-}
-
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
     </style>
 </head>
 
@@ -299,14 +265,16 @@ li a:hover:not(.active) {
 
             </div id="heading" class="heading">
         </div>
-        <ul>
-            <li><a class="active" href="#home">Home</a></li>
+
+
+        <ul class="nav">
+            <li><a href="home">Home</a></li>
             <li><a href="resources">Resources</a></li>
             <li><a href="tips">Tips</a></li>
+            <li><a href="mental">Mental Health</a></li>
+            <li><a href="tutor">Tutor</a></li>
 
-          </ul>
-
-
+        </ul>
         <main class="msger-chat">
         </main>
         <form class="msger-inputarea">
@@ -357,7 +325,7 @@ li a:hover:not(.active) {
         appendMessage(BOT_NAME, BOT_IMG, "left", "Hi, I am Jazz, your education assistant. What resources do you need?");
         function botResponse(rawText) {
             // Bot Response
-            $.get("/get", { msg: rawText }).done(function (data) {
+            $.get("/metuchen/get", { msg: rawText }).done(function (data) {
                 console.log(rawText);
                 console.log(data);
                 const msgText = data;
