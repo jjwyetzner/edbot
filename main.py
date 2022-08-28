@@ -96,3 +96,6 @@ def tips(request: Request):
 @app.get("/get")
 def getBotResponse(msg: str):
     return str(getResponse(msg))
+
+if __name__ == "__main__":
+    uvicorn.run("main:app")
