@@ -23,7 +23,7 @@ sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
 model = load_model('model/model.h5')
 words = pickle.load(open('model/words.pkl', 'rb'))
 classes = pickle.load(open('model/classes.pkl', 'rb'))
-intents = json.loads(open('app/model/general/training.json', encoding='utf-8').read())
+intents = json.loads(open('model/training.json', encoding='utf-8').read())
 needinfo = ["I'm having trouble understanding. Could you tell me more? For more help, please see the resource pages linked above.", "Could you elaborate more on that?"]
 
 def cleanUpSentence(sentence):
@@ -76,3 +76,26 @@ def getResponse(request):
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+@app.get("/", response_class=HTMLResponse)
+def main(request: Request):
+    return templates.TemplateResponse("main.html", {"request": request})
+
+@app.get("/home", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("main.html", {"request": request})
+
+@app.get("/resources", response_class=HTMLResponse)
+def resources(request: Request):
+    return templates.TemplateResponse("resources.html", {"request": request})
+
+@app.get("/tips", response_class=HTMLResponse)
+def tips(request: Request):
+    return templates.TemplateResponse("tips.html", {"request": request})
+
+@app.get("/get")
+def getBotResponse(msg: str):
+    return str(getResponse(msg))
+
+if __name__ == "__main__":
+    uvicorn.run("main:app")

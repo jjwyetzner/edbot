@@ -357,7 +357,7 @@ li a:hover:not(.active) {
         appendMessage(BOT_NAME, BOT_IMG, "left", "Hi, I am Jazz, your education assistant. What resources do you need?");
         function botResponse(rawText) {
             // Bot Response
-            $.get("/metuchen/get", { msg: rawText }).done(function (data) {
+            $.get("/get", { msg: rawText }).done(function (data) {
                 console.log(rawText);
                 console.log(data);
                 const msgText = data;

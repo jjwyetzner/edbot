@@ -1,0 +1,121 @@
+{
+    "training": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "hello",
+                "hey",
+                "howdy",
+                "whats up",
+                "wassup",
+                "hola",
+                "hi"
+            ],
+            "responses": [
+                "Hey there! I am Jazz your education assistant. What subject do you need assistance in?"
+            ]
+        },
+
+        {
+            "tag": "math",
+            "patterns": [
+                "arithmetic",
+                "math",
+                "mathematics",
+                "maths",
+                "addition",
+                "subtraction",
+                "multiplication",
+                "division",
+                "fractions",
+                "exponents",
+                "algebra",
+                "calculus",
+                "problems"
+            ],
+            "responses": [
+                "Based on your input, I believe you are searching for help in mathematics. You have now been redirected to the mathematics chatbot response page. Please type in any problem or topic you need help with."
+            ]
+        },
+
+        {
+            "tag": "history",
+            "patterns": [
+                "history",
+                "past",
+                "social",
+                "studies",
+                "civics",
+                "apush",
+                "USA"
+            ],
+            "responses": [ 
+                "Based on your input, I believe you are searching for help in history. You have now been redirected to the history chatbot response page. Please type in any questions or topic you need help with."
+            ]
+        },
+        {
+            "tag": "english",
+            "patterns": [
+                "english",
+                "literature",
+                "reading",
+                "writing",
+                "ELA",
+                "language",
+                "composition"
+
+            ],
+            "responses": [
+                "Based on your input, I believe you are searching for help in English and Language Arts. You have now been redirected to the English and Language Arts chatbot response page. Please type in any question or topic you need help with."
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "bye",
+                "farewell",
+                "see ya",
+                "peace",
+                "later",
+                "goodbye",
+                "adios",
+                "end",
+                "quit",
+                "leave",
+                "done"
+            ],
+            "responses": [
+                "Thank you for using the Edbot education resource center. Please come again!" 
+            ]
+        },
+        {
+            "tag": "thank",
+            "patterns": [
+               "thanks",
+               "thank",
+               "gratitude"
+            ],
+            "responses": [
+                "You're welcome, do you need any more assistance?",
+                "My Pleasure, do you need any more help?"
+            ]       
+           },
+           {
+            "tag": "instructions",
+            "patterns":[
+                "use",
+                "use this",
+                "instructions",
+                "directions",
+                "requirements",
+                "guide"
+            ],
+            "responses":[
+                "To use me, simply ask me for help in any of my supported subjects. Currently, I am trained in providing assistance in mathenmatics, english, and history."
+            ]
+        }
+
+            ]
+        }
+
+        
