@@ -9,11 +9,12 @@ import json
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import gradient_descent_v2
+import numpy as np
 
 words = []
 classes = []
 documents = []
-ignoredWwords = ['?', '!']
+ignoredWords = ['?', '!']
 training = open('model/training.json', encoding='utf-8').read()
 intents = json.loads(training)
 
